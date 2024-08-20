@@ -18,8 +18,8 @@ public class PersonController {
         this.personRepository = personRepository;
     }
     @PostMapping(value="/people")
-    Person createPerson(@RequestBody Person p){
-        return personRepository.save(p);
+        ResponseEntity<Person> createPerson(@RequestBody Person p){
+        return new ResponseEntity<>(personRepository.save(p), HttpStatus.CREATED);
     }
     @GetMapping(value="/people/{id}")
     ResponseEntity<Person> getPerson(@PathVariable("id") int id){
