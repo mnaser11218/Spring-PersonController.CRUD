@@ -30,8 +30,8 @@ public class PersonController {
         return new ResponseEntity<> (personRepository.findAll(), HttpStatus.OK);
     }
     @PutMapping(value="/people/{id}")
-    Person updatePerson(@PathVariable("id") @RequestBody Person p){
-        return personRepository.save(p);
+    ResponseEntity<Person> updatePerson(@PathVariable("id") @RequestBody Person p){
+        return new ResponseEntity<>(personRepository.save(p), HttpStatus.ACCEPTED);
     }
     @DeleteMapping(value="/people/{id}")
     void deletePerson(@PathVariable("id") int id){
