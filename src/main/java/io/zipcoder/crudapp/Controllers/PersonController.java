@@ -24,19 +24,18 @@ public class PersonController {
     @GetMapping(value="/people/{id}")
     ResponseEntity<Person> getPerson(@PathVariable("id") int id){
         return new ResponseEntity<>( personRepository.findOne(id), HttpStatus.OK);
-
     }
-//    @GetMapping(value="/people")
-//    List<Person> getPersonList(){
-//        return (List<Person>) personRepository.findAll();
-//    }
-//    @PutMapping(value="/people/{id}")
-//    Person updatePerson(@PathVariable("id") @RequestBody Person p){
-//        return null;
-//    }
-//    @DeleteMapping(value="/people/{id}")
-//    void deletePerson(@PathVariable("id") int id){
-//    personRepository.delete(id);
-//    };
+    @GetMapping(value="/people")
+    List<Person> getPersonList(){
+        return (List<Person>) personRepository.findAll();
+    }
+    @PutMapping(value="/people/{id}")
+    Person updatePerson(@PathVariable("id") @RequestBody Person p){
+        return personRepository.save(p);
+    }
+    @DeleteMapping(value="/people/{id}")
+    void deletePerson(@PathVariable("id") int id){
+    personRepository.delete(id);
+    };
 
 }
