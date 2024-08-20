@@ -26,8 +26,8 @@ public class PersonController {
         return new ResponseEntity<>( personRepository.findOne(id), HttpStatus.OK);
     }
     @GetMapping(value="/people")
-    List<Person> getPersonList(){
-        return (List<Person>) personRepository.findAll();
+    ResponseEntity<Iterable<Person> > getPersonList(){
+        return new ResponseEntity<> (personRepository.findAll(), HttpStatus.OK);
     }
     @PutMapping(value="/people/{id}")
     Person updatePerson(@PathVariable("id") @RequestBody Person p){
